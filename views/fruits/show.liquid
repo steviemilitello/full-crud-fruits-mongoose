@@ -11,6 +11,10 @@
                 {%endif%}
             </h2>
             <h3>{{ fruit.color }}</h3>
+            <a href="/fruits/{{ fruit.id }}/edit"><button>Edit</button></a>
+            <form action="/fruits/{{ fruit.id }}?_method=DELETE" method="POST">
+                <input type="submit" value="delete that froot">
+            </form>
         </article>
     </div>
 {% endblock %}
