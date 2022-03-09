@@ -33,8 +33,32 @@ app.use(express.static('public'))
 /////////////////////////////////////////////////
 
 app.get('/', (req, res) => {
-    console.log('the Fruit Model', Fruit)
+    // console.log('the Fruit Model', Fruit)
     res.send('your server is running, better go catch it')
+})
+
+app.get('/fruits/seed', (req, res) => {
+    // arr of starter fruits
+    const startFruits = [
+        { name: "Orange", color: "orange", readyToEat: false },
+        { name: "Grape", color: "purple", readyToEat: false },
+        { name: "Banana", color: "orange", readyToEat: false },
+        { name: "Strawberry", color: "red", readyToEat: false },
+        { name: "Coconut", color: "brown", readyToEat: false }
+      ]
+      // when we seed data, there are a few steps involved 
+      // delete all data that already exists (will only happen if data exists)
+      Fruit.remove({})
+        .then(data => {
+            console.log('this is what remove returns', data)
+            // create our seed data
+            Fruit.create(startFruits)
+                .then(data => {
+                    console.log('this is what create returns', data)
+                    res.send(data)
+                })
+        })
+      // then we can send if we want to see the data
 })
 
 /////////////////////////////////////////////////
