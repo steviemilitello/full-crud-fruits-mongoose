@@ -6,7 +6,7 @@
     <div>
         {% for fruit in fruits %}
             <article>
-                <a href="">
+                <a href="/fruits/{{ fruit.id }}">
                     <h2>
                         {{ fruit.name }}
                         {% if fruit.readyToEat %}
