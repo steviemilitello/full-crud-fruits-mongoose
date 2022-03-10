@@ -16,7 +16,8 @@ const { Schema, model } = mongoose
 const fruitSchema = new Schema({
     name: { type: String },
     color: { type: String },
-    readyToEat: { type: Boolean }
+    readyToEat: { type: Boolean },
+    username: { type: String }
 }, { timestamps: true })
 
 // make our fruit model
