@@ -1,23 +1,33 @@
-<!-- serving block in layout.liquid -->
-<!-- so we need to inform all our block (files) -->
-{% layout 'layout.liquid' %}
-<!-- start block content -->
+<!-- we're serving block content in layout.liquid -->
+<!-- so we need to inform all our blocks(files) -->
+{% layout 'layout.liquid'%}
+<!-- here we start our block content -->
 {% block content %}
-    <div>
-        <a href="/fruits/new">Create a new Fruit</a>
-        {% for fruit in fruits %}
-            <article>
-                <a href="/fruits/{{ fruit.id }}">
-                    <h2>
-                        {{ fruit.name }}
-                        {% if fruit.readyToEat %}
-                            Ripe
-                        {% else %}
-                            Not Ripe
-                        {% endif %}
-                    </h2>
-                </a>
-            </article>
-        {% endfor %}
+    <div class="container-md">
+        <h2 class="display-6">All Fruits</h2>
+        <div class="row">
+            {% for fruit in fruits %}
+                <div class="card" style="width: 18rem;">
+                    <!-- card header -> name of fruit -->
+                    <!-- card body -> ready to eat as title, color as text-->
+                    <h5 class="card-header">{{fruit.name}}</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {% if fruit.readyToEat %}
+                                Ripe
+                            {% else %}
+                                Not Ripe
+                            {% endif %}
+                        </h5>
+                        <p class="card-text"> 
+                            The color of this {{fruit.name}} is {{ fruit.color }}
+                        </p>
+                        <a href="/fruits/{{ fruit.id }}" class="btn btn-info">
+                            View {{ fruit.name }}
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

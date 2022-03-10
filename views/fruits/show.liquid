@@ -1,6 +1,6 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-    <div>
+    <div class="container-md">
         <article>
             <h2>
                 {{ fruit.name }} - 
@@ -11,10 +11,11 @@
                 {%endif%}
             </h2>
             <h3>{{ fruit.color }}</h3>
-            <a href="/fruits/{{ fruit.id }}/edit"><button>Edit</button></a>
-            <form action="/fruits/{{ fruit.id }}?_method=DELETE" method="POST">
-                <input type="submit" value="delete that froot">
-            </form>
+            <div class="btn-group">
+                <a href="/fruits/{{ fruit.id }}/edit" class="btn btn-primary">Edit</a>
+                <form action="/fruits/{{ fruit.id }}?_method=DELETE" method="POST">
+                    <input type="submit" value="Delete that Froot" class="btn btn-danger">
+            </div>
         </article>
     </div>
 {% endblock %}
