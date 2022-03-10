@@ -2,7 +2,6 @@
 ////////////// DEPENDENCIES /////////////////////
 /////////////////////////////////////////////////
 
-// import our dependencies
 const mongoose = require('./connection')
 const Fruit = require('./fruit')
 
@@ -10,14 +9,11 @@ const Fruit = require('./fruit')
 ////////////// SEED CODE ////////////////////////
 /////////////////////////////////////////////////
 
-const db = mongoose.connection
+// save the connection in a variable
+const db = mongoose.connection;
 
-/////////////////////////////////////////////////
-////////////// SEED DATA ////////////////////////
-/////////////////////////////////////////////////
-
-db.on('open', (req, res) => {
-	// arr of starter fruits
+db.on('open', () => {
+	// array of starter fruits
 	const startFruits = [
 		{ name: 'Orange', color: 'orange', readyToEat: false },
 		{ name: 'Grape', color: 'purple', readyToEat: false },
@@ -29,22 +25,22 @@ db.on('open', (req, res) => {
 	// when we seed data, there are a few steps involved
 	// delete all the data that already exists(will only happen if data exists)
 	Fruit.remove({})
-        .then((deletedFruits) => {
+        .then(deletedFruits => {
 		    console.log('this is what remove returns', deletedFruits)
 		    // then we create with our seed data
-		    Fruit.create(startFruits)
+            Fruit.create(startFruits)
                 .then((data) => {
-			        console.log('here are the new seed fruits', data)
-                    // then we can send if we want to see that data
-			        db.close()
-		})
+                    console.log('Here are the new seed fruits', data)
+                    db.close()
+                })
+                .catch(error => {
+                    console.log(error)
+                    db.close()
+                })
+	    })
         .catch(error => {
             console.log(error)
             db.close()
         })
-	})
-    .catch(error => {
-        console.log(error)
-        db.close()
-    })
+	// then we can send if we want to see that data
 })

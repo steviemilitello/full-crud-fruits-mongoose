@@ -1,41 +1,36 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-    <div class="container-sm">  
-        <form action="/fruits/{{ fruit.id }}?_method=PUT" method="POST">
-            <fieldset>
-                <legend>Edit New Fruit</legend>
-                    <label class="form-label">Name:</label>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="enter fruit name"
-                        class="form-control"
-                        value="{{ fruit.name }}"
-                    >
-                    <label class="form-label" >Color:</label>
-                    <input
-                        type="text"
-                        name="color"
-                        placeholder="enter fruit color"
-                        class="form-control"
-                        value="{{ fruit.color }}"
-                    >
-                    <label class="form-label"></labelclass> Ready To Eat:</label>
-                    <input
-                        type="checkbox"
-                        class="form-check-input"
-                        name="readyToEat"
-                        {% if fruit.readyToEat %}
-                            checked
-                        {% endif %}
-                    >
-                
-            </fieldset>
-            <input
-                type="submit"
-                value="Edit {{ fruit.name }}"
-                class = "btn btn-success"
+<div class="container-sm">
+    <form action="/fruits/{{ fruit.id }}?_method=PUT" method="POST">
+        <fieldset>
+            <legend>Edit New Fruit</legend>
+            <label class="form-label">Name:</label>
+            <input 
+                type="text" 
+                name="name" 
+                placeholder="enter fruit name"
+                class="form-control"
+                value={{ fruit.name }}
             >
-        </form>
-    </div>
+            <label class="form-label">Color:</label>
+            <input 
+                type="text" 
+                name="color" 
+                placeholder="enter fruit color"
+                class="form-control"
+                value={{ fruit.color }}
+            >
+            <label class="form-label">Ready To Eat: </label>
+            <input 
+                type="checkbox" 
+                name="readyToEat"
+                class="form-check-input"
+                {% if fruit.readyToEat %}
+                    checked
+                {% endif %}
+            >
+        </fieldset>
+        <input type="submit" class="btn btn-success" value="Edit {{ fruit.name }}">
+    </form>
+</div>
 {% endblock %}
