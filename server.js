@@ -11,6 +11,7 @@ const express = require('express')
 // we need to require our routers
 const FruitRouter = require('./controllers/fruit')
 const UserRouter = require('./controllers/user')
+const HomeRouter = require('./controllers/home')
 const middleware = require('./utils/middleware')
 
 const app = require('liquid-express-views')(express())
@@ -28,10 +29,12 @@ middleware(app)
 // send all '/fruits' routes to the Fruit Router
 app.use('/fruits', FruitRouter)
 app.use('/user', UserRouter)
+app.use('/', HomeRouter)
 
-app.get('/', (req, res) => {
-    res.send('your server is running, better go catch it')
-})
+// old home, no we're using home router
+// app.get('/', (req, res) => {
+//     res.send('your server is running, better go catch it')
+// })
 
 
 /////////////////////////////////////////////////
